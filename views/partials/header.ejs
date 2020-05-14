@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       	<link rel="stylesheet"	href="/assets/4.4.1cssbootstrap.min.css">
+        <link rel="stylesheet" href="/main.css">
+        <title> Pretty Places </title>
+    </head>
+<body>
+
+        
+<nav class="navbar navbar-light  navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="/campgrounds">YelpCamp</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse navbar-right" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <% if(!currentUser){ %> 
+                <li class="nav-item"><a a class="nav-link" href="/login">Log In</a></li>   
+                <li class="nav-item"><a a class="nav-link" href="/register">Sign Up</a>  </li> 
+            <% } else { %> 
+                <li class="nav-item"><a a class="nav-link" id="currentUser" href="#"><%- currentUser.username %> </a> </li>
+                <li class="nav-item"><a a class="nav-link" href="/logout"> Log Out</a>    </li>
+            <% } %> 
+           </ul> 
+        </li>
+      </ul>
+    </div>
+</div>
+  </nav>
+  <br>
+  <div class="container" style="width: 70%;">  
+    <div class="alert-danger" role="alert">
+       <%= error %>  
+    </div> 
+</div> 
+<div class="container" style="width: 70%;">  
+  <div class="alert-success" role="alert">
+     <%= success %>  
+  </div> 
+</div>
+  
+   
+  <br>
+
+
+        
+ 

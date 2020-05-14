@@ -1,0 +1,117 @@
+<%- include ('../partials/header') -%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Ylp Camp</p>
+                <div class="list-group">
+                    <li class="list-group-item">Info 1</li>
+                    <li class="list-group-item">Info 2</li>
+                    <li class="list-group-item">Info 3</li>
+                </div>
+        </div>
+        <main class="col-md-9">
+            <div class="card">
+                <img  class="card-img-top" src="<%-camp.image -%>">
+                <div class="caption-full">
+                    <h4 class="pull-right" id="Price"></h4>
+                    <a href="<%-  camp._id -%>"> <h4><%-  camp.name -%></h4></a>
+                    <p><%-  camp.description -%></p><br>
+                    <span class="row">
+                    <p class="author col-md-9"><%-  camp.author.username -%></p>
+                    <% if ( currentUser &&  camp.author.username == currentUser.username){  %> 
+                    <div class="owner col-md-3">
+                        <a href="<%-  camp._id -%>/edit"><button class='btn btn-warning'>edit</button></a>
+                        <form action="<%-camp._id-%>?_method=delete" class="inLin"  method="POST">
+                            <button class='btn btn-danger'>delete</button>
+                       </form>
+                    </div>
+                <% } %> 
+                </span>
+                </div>
+            </div>
+        <div>
+            <div class='border'>
+            <div class="card-body" id="comments">
+                <div class="login text-right">
+                    <a class='btn btn-success'  href="/campgrounds/<%- camp._id -%>/comments/new">New comment</a>
+                </div>                           
+                 <% for(let i=0;i < comments.length;i++){ %>
+                    <hr>
+                <div class="row">
+                    <div class="col-sm-8"> <strong class="author col-md-2"><%- comments[i].author.username -%></strong></div>
+                    <% if(currentUser){ %> 
+                    <div class="col-sm-1">
+                    <form class='inLin login rplyforms' action="/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>/reply/new" method='get'>
+                    <button type="submit" class='btn-sm cmntbtn btn-primary'>Reply</button> </form>
+                </div>
+                <% } %>
+                <% if( currentUser && comments[i].author.username == currentUser.username){  %> 
+                <div class="col-sm-1">
+                    <form action="/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>/edit" method='get'>
+                        <button type="submit" class='btn-sm btn-warning inLin cmntbtn'>edit</button>
+                        </form>
+                </div>
+                <div class="col-sm-1">                                                    
+                    <form class='inLin' action="/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>?_method=delete" method='POST'>
+                        <button type="submit" class='cmntbtn btn-sm btn-danger'>delete</button> </form> 
+                    </div>
+                <% } %>
+            </div>
+
+            <div class="row" onload="x()">
+                <div class="col-sm-1"></div>
+                <p> <%-comments[i].text-%> </p>
+            </div>
+            <% for(let j=0; j < comments[i].replies.length; j++){ %> 
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-7" id="rplyAuth<%-i-%><%-j-%>"></div>
+                <div class="col-sm-1" id="rplyedit<%-i-%><%-j-%>"></div>
+                <div class="col-sm-1" id="rplydel<%-i-%><%-j-%>"></div>
+            </div>
+            <% } %>
+        <script>
+
+            fetch("/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>/reply/-%>")
+            .then(resp =>{
+                return resp.text();
+            })
+            .then(ata =>{
+                ata = JSON.parse(ata);
+
+              
+                for(let j=0;j<ata.length;j++){
+                    
+                  
+                
+                    id += j.toString(); 
+                    console.log("rplyAuth" + id);
+                    
+              //      document.getElementById("rplyAuth" + id).innerText =  ata[j].author.username + "   replied " + ata[j].text;
+              //     <% if( currentUser && comments[i].author.username == currentUser.username){  %> 
+              //     document.getElementById("rplyedit" + id).innerHTML =  "<form action='/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>/xhtfghb/edit' method='get'>" +
+              //                          "<button type='submit' class='btn-sm btn-warning inLin cmntbtn'>edit</button> </form>";
+                   
+              //     document.getElementById("rplydel" + id).innerHTML = "<form class='inLin' action='/campgrounds/<%-camp._id-%>/comments/<%-comments[i]._id-%>/fghmbn/?_method=delete' method='POST'>"+
+             //            "<button type='submit' class='cmntbtn btn-sm btn-danger'>delete</button> </form>; 
+             //      <%}%>  
+                }
+            });
+
+
+        </script>
+
+        <%  }; %> 
+        </div>
+    </div>
+         </div>
+            <a href="/campgrounds/"><button class='btn'> Go Home</button></a>
+        </main>
+    </div>
+</div>
+
+
+
+<%- include ('../partials/footer') -%>
+
+

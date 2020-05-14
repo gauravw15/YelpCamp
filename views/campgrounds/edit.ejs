@@ -1,0 +1,25 @@
+<%- include ('../partials/header') -%>
+<h1 class="txtcntr">EDIT PAGE</h1>
+<div class="ui main text container segment">
+    <div class="ui huge header"> <div id="heading"></div> </div>
+
+        <form action="/campgrounds/<%-camp._id-%>?_method=PUT" class="form"  method="POST">
+            <section class="form-group">
+                <input class="form-control" type="text" name="name" value="<%- camp.name -%>"> 
+            </section>
+            <section class="form-group">
+                <input class="form-control" type="text" name="image" value="<%- camp.image -%>">
+            </section>
+            <section class="form-group">
+                <input type="text" class=" form-control" name="description" value="<%-camp.description-%>"></textarea>
+            </section>
+            <section class="form-group">
+                <button  class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </section>
+        </form>
+        <a href="">Go Back</a>
+</div>
+<%- include ('../partials/footer') -%>
+
+
+

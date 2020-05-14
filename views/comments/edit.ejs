@@ -1,0 +1,27 @@
+<%- include ('../partials/header') -%>
+<script>
+    var l = window.location.href;
+    console.log(l)
+</script>
+<div class="row">
+    <div class="container">
+        <h1 class="txtcntr">Edit Comment</h1>
+        <div class="form" >
+        <form method="POST" action="<%-URL-%>?_method=PUT">
+            <section class="form-group">
+                <input class="form-control" id="commenttext" type="text" name="comment[text]" value="<%-comment.text-%>"> 
+            </section>
+            <section class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </section>
+        </form>
+        <a id="CampID">Go Back</a>
+    </div>        
+    </div>
+</div>
+
+</div>
+<%- include ('../partials/footer') -%>
+
+
+

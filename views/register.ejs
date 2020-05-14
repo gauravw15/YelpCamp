@@ -1,0 +1,18 @@
+<%- include ('partials/header') -%>
+<div class="row">
+    <div class="container">
+    <h1 class="form" >Sign Up Form</h1>
+    <form class="form" action="/register" method="POST">
+        <section class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="UsrNam">
+    </section>
+    <section class="form-group">
+        <input type="password" class="form-control"  name="password" placeholder="password">
+    </section>
+    <section class="form-group">
+        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+    </section>
+    </form>
+    </div>        
+</div>
+<%- include ('partials/footer') -%>

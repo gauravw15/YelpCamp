@@ -38,8 +38,7 @@ Each campground has:
 * 
 * 
 
-v5
-# Styl Show Pag
+# Style Show Page
 * Add sidebar
 * Display comments nicely
 
